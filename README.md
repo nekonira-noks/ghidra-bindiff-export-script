@@ -1,13 +1,14 @@
 # ghidra-bindiff-export-script
 
 Ghidra Bindiff Export Script は、Ghidra のバイナリ差分解析（Bindiff）を補助し、結果のエクスポートなどを自動化するためのスクリプト群です。
+ファームウェアを展開した際のファイルシステムのディレクトリ構成を保持したまま，バイナリファイルをGhidraで解析し，Binexport形式にエクスポートするのに特化しています．
 
 ## 概要
 
-このリポジトリには、Ghidra の Python スクリプト（Jython）として動作する `ExportToBinexport.py` などが含まれています。  
-主に Ghidra の Bindiff 機能を活用して、解析対象バイナリの BinExport 形式でのエクスポート処理を自動化できます。
+このリポジトリには、Ghidra の Python スクリプト（Jython）として動作する `ExportToBinexport.py` が含まれています。  
+主に Ghidra を活用して、解析対象バイナリを BinDiff で利用できる BinExport 形式にエクスポートする処理を自動化できます。
 
-## 主なスクリプト
+## スクリプト
 
 ### ExportToBinexport.py
 
@@ -29,20 +30,19 @@ Ghidra Bindiff Export Script は、Ghidra のバイナリ差分解析（Bindiff�
 ### 1. スクリプトの設置
 
 1. このリポジトリをクローンまたはダウンロード
-2. `ExportToBinexport.py` を Ghidra スクリプトディレクトリに配置
+2. `ExportToBinexport.py` を Ghidra スクリプトディレクトリに配置 わからなければ，Ghidraのマニュアルをみて
 
 ### 2. Ghidra での実行手順
 
 1. Ghidra でターゲットバイナリを開く
 2. 「Script Manager」から本スクリプトを選択
 3. 以下の引数を指定してスクリプトを実行
-   - **第1引数**: 出力先ベースディレクトリ
-   - **第2引数**: ファームウェアモデル名
+   - **第1引数**: Binexportされたファイルを保存するディレクトリ
 
 #### 例（ヘッドレス実行時）
 
 ```
-analyzeHeadless <プロジェクトディレクトリ> <プロジェクト名> -import <バイナリファイル> -scriptPath <スクリプトディレクトリ> -postScript ExportToBinexport.py <出力ディレクトリ> <FW名>
+analyzeHeadless <プロジェクトディレクトリ> <プロジェクト名> -import <バイナリファイル> -postScript ExportToBinexport.py <出力ディレクトリ> 
 ```
 
 ### 3. 出力
@@ -53,7 +53,7 @@ analyzeHeadless <プロジェクトディレクトリ> <プロジェクト名> -
 
 ## 前提・依存
 
-- Ghidra 本体（推奨バージョン: 10.x 以上）
+- Ghidra 
 - BinExport 拡張（https://github.com/google/binexport）
 - Ghidra の Python スクリプト実行環境（Jython）
 
